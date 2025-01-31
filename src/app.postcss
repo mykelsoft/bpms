@@ -1,0 +1,362 @@
+@import 'tailwindcss';
+
+:root {
+	--p-shadow-0: none;
+	--p-shadow-100: 0rem 0.3125rem 0.3125rem -0.15625rem rgba(0, 0, 0, 0.03),
+		0rem 0.1875rem 0.1875rem -0.09375rem rgba(0, 0, 0, 0.02), 0rem 0.125rem 0.125rem -0.0625rem rgba(0, 0, 0, 0.02),
+		0rem 0.0625rem 0.0625rem -0.03125rem rgba(0, 0, 0, 0.03), 0rem 0.03125rem 0.03125rem 0rem rgba(0, 0, 0, 0.04),
+		0rem 0rem 0rem 0.0625rem rgba(0, 0, 0, 0.06);
+	--p-shadow-200: 0rem 0.5rem 0.625rem -0.3125rem rgba(0, 0, 0, 0.08), 0rem 0.3125rem 0.3125rem -0.15625rem rgba(0, 0, 0, 0.03),
+		0rem 0.1875rem 0.1875rem -0.09375rem rgba(0, 0, 0, 0.02), 0rem 0.125rem 0.125rem -0.0625rem rgba(0, 0, 0, 0.02),
+		0rem 0.0625rem 0.0625rem -0.03125rem rgba(0, 0, 0, 0.03), 0rem 0.03125rem 0.03125rem 0rem rgba(0, 0, 0, 0.04),
+		0rem 0rem 0rem 0.0625rem rgba(0, 0, 0, 0.06);
+	--p-shadow-300: 0rem 0.5rem 1.5rem -0.5rem rgba(0, 0, 0, 0.28), 0rem 0.5rem 1rem -0.25rem rgba(0, 0, 0, 0.05),
+		0rem 0.1875rem 0.375rem 0rem rgba(0, 0, 0, 0.05), 0rem 0.125rem 0.25rem 0rem rgba(0, 0, 0, 0.05),
+		0rem 0.0625rem 0.125rem 0rem rgba(0, 0, 0, 0.05), 0rem 0rem 0rem 0.0625rem rgba(0, 0, 0, 0.06);
+	--p-shadow-400: 0rem 1.25rem 2rem -0.75rem rgba(0, 0, 0, 0.2), 0rem 0.625rem 1rem -0.375rem rgba(0, 0, 0, 0.08),
+		0rem 0.1875rem 0.375rem 0rem rgba(0, 0, 0, 0.08), 0rem 0.125rem 0.25rem 0rem rgba(0, 0, 0, 0.08),
+		0rem 0.0625rem 0.125rem 0rem rgba(0, 0, 0, 0.05), 0rem 0rem 0rem 0.0625rem rgba(0, 0, 0, 0.06);
+	--p-shadow-500: 0rem 1.5rem 2.25rem -0.75rem rgba(0, 0, 0, 0.12), 0rem 1.5rem 1.5rem -0.75rem rgba(0, 0, 0, 0.08),
+		0rem 0.5rem 1rem -0.375rem rgba(0, 0, 0, 0.08), 0rem 0.1875rem 0.375rem 0rem rgba(0, 0, 0, 0.08),
+		0rem 0.125rem 0.25rem 0rem rgba(0, 0, 0, 0.08), 0rem 0.0625rem 0.125rem 0rem rgba(0, 0, 0, 0.05),
+		0rem 0rem 0rem 0.0625rem rgba(0, 0, 0, 0.06);
+	--p-shadow-600: 0rem 1.5rem 3.5rem -0.75rem rgba(0, 0, 0, 0.24), 0rem 1.5rem 1.5rem -0.75rem rgba(0, 0, 0, 0.12),
+		0rem 0.1875rem 0.375rem 0rem rgba(0, 0, 0, 0.05), 0rem 0.125rem 0.25rem 0rem rgba(0, 0, 0, 0.05),
+		0rem 0.0625rem 0.125rem 0rem rgba(0, 0, 0, 0.05), 0rem 0rem 0rem 0.0625rem rgba(0, 0, 0, 0.07);
+	--p-shadow-bevel-100: 0.0625rem 0rem 0rem 0rem rgba(0, 0, 0, 0.13) inset, -0.0625rem 0rem 0rem 0rem rgba(0, 0, 0, 0.13) inset,
+		0rem -0.0625rem 0rem 0rem rgba(0, 0, 0, 0.17) inset, 0rem 0.0625rem 0rem 0rem rgba(204, 204, 204, 0.5) inset;
+	--p-shadow-inset-100: 0rem 0.0625rem 0.125rem 0rem rgba(26, 26, 26, 0.15) inset,
+		0rem 0.0625rem 0.0625rem 0rem rgba(26, 26, 26, 0.15) inset;
+	--p-shadow-inset-200: 0rem 0.125rem 0.0625rem 0rem rgba(26, 26, 26, 0.2) inset,
+		0.0625rem 0rem 0.0625rem 0rem rgba(26, 26, 26, 0.12) inset, -0.0625rem 0rem 0.0625rem 0rem rgba(26, 26, 26, 0.12) inset;
+	--p-shadow-button: 0rem -0.0625rem 0rem 0rem #b5b5b5 inset, 0rem 0rem 0rem 0.0625rem rgba(0, 0, 0, 0.1) inset,
+		0rem 0.03125rem 0rem 0.09375rem #fff inset;
+	--p-shadow-button-hover: 0rem 0.0625rem 0rem 0rem #ebebeb inset, -0.0625rem 0rem 0rem 0rem #ebebeb inset,
+		0.0625rem 0rem 0rem 0rem #ebebeb inset, 0rem -0.0625rem 0rem 0rem #ccc inset;
+	--p-shadow-button-inset: -0.0625rem 0rem 0.0625rem 0rem rgba(26, 26, 26, 0.122) inset,
+		0.0625rem 0rem 0.0625rem 0rem rgba(26, 26, 26, 0.122) inset, 0rem 0.125rem 0.0625rem 0rem rgba(26, 26, 26, 0.2) inset;
+	--p-shadow-button-primary: 0rem -0.0625rem 0rem 0.0625rem rgba(0, 0, 0, 0.8) inset,
+		0rem 0rem 0rem 0.0625rem rgba(48, 48, 48, 1) inset, 0rem 0.03125rem 0rem 0.09375rem rgba(255, 255, 255, 0.25) inset;
+	--p-shadow-button-primary-hover: 0rem 0.0625rem 0rem 0rem rgba(255, 255, 255, 0.24) inset,
+		0.0625rem 0rem 0rem 0rem rgba(255, 255, 255, 0.2) inset, -0.0625rem 0rem 0rem 0rem rgba(255, 255, 255, 0.2) inset,
+		0rem -0.0625rem 0rem 0rem #000 inset, 0rem -0.0625rem 0rem 0.0625rem #1a1a1a;
+	--p-shadow-button-primary-inset: 0rem 0.1875rem 0rem 0rem rgb(0, 0, 0) inset;
+	--p-shadow-button-primary-critical: 0rem -0.0625rem 0rem 0.0625rem rgba(142, 11, 33, 0.8) inset,
+		0rem 0rem 0rem 0.0625rem rgba(163, 10, 36, 0.8) inset, 0rem 0.03125rem 0rem 0.09375rem rgba(247, 128, 134, 0.64) inset;
+	--p-shadow-button-primary-critical-hover: 0rem -0.0625rem 0rem 0.0625rem rgba(142, 11, 33, 0.8) inset,
+		0rem 0rem 0rem 0.0625rem rgba(163, 10, 36, 0.8) inset, 0rem 0.03125rem 0rem 0.09375rem rgba(247, 128, 134, 0.44) inset;
+	--p-shadow-button-primary-critical-inset: -0.0625rem 0rem 0.0625rem 0rem rgba(0, 0, 0, 0.2) inset,
+		0.0625rem 0rem 0.0625rem 0rem rgba(0, 0, 0, 0.2) inset, 0rem 0.125rem 0rem 0rem rgba(0, 0, 0, 0.6) inset;
+	--p-shadow-button-primary-success: 0rem -0.0625rem 0rem 0.0625rem rgba(12, 81, 50, 0.8) inset,
+		0rem 0rem 0rem 0.0625rem rgba(19, 111, 69, 0.8) inset, 0rem 0.03125rem 0rem 0.09375rem rgba(255, 255, 255, 0.251) inset;
+	--p-shadow-button-primary-success-hover: 0rem 0.0625rem 0rem 0rem rgba(255, 255, 255, 0.48) inset,
+		0.0625rem 0rem 0rem 0rem rgba(255, 255, 255, 0.2) inset, -0.0625rem 0rem 0rem 0rem rgba(255, 255, 255, 0.2) inset,
+		0rem -0.09375rem 0rem 0rem rgba(0, 0, 0, 0.25) inset;
+	--p-shadow-button-primary-success-inset: -0.0625rem 0rem 0.0625rem 0rem rgba(0, 0, 0, 0.2) inset,
+		0.0625rem 0rem 0.0625rem 0rem rgba(0, 0, 0, 0.2) inset, 0rem 0.125rem 0rem 0rem rgba(0, 0, 0, 0.6) inset;
+	--p-shadow-border-inset: 0rem 0rem 0rem 0.0625rem rgba(0, 0, 0, 0.08) inset;
+
+	--motion-duration-0: 0ms;
+	--motion-duration-50: 50ms;
+	--motion-duration-100: 100ms;
+	--motion-duration-150: 150ms;
+	--motion-duration-200: 200ms;
+	--motion-duration-250: 250ms;
+	--motion-duration-300: 300ms;
+	--motion-duration-350: 350ms;
+	--motion-duration-400: 400ms;
+	--motion-duration-450: 450ms;
+	--motion-duration-500: 500ms;
+	--motion-duration-5000: 5000ms;
+	--motion-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+	--motion-ease-in: cubic-bezier(0.42, 0, 1, 1);
+	--motion-ease-out: cubic-bezier(0.19, 0.91, 0.38, 1);
+	--motion-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+	--motion-linear: cubic-bezier(0, 0, 1, 1);
+	--motion-keyframes-bounce: motion-keyframes-bounce;
+	--motion-keyframes-fade-in: motion-keyframes-fade-in;
+	--motion-keyframes-pulse: motion-keyframes-pulse;
+	--motion-keyframes-spin: motion-keyframes-spin;
+	--motion-keyframes-appear-above: motion-keyframes-appear-above;
+	--motion-keyframes-appear-below: motion-keyframes-appear-below;
+}
+
+@theme {
+	/* custom colors */
+	--color-scheme: rgba(241, 241, 241, 1);
+	--color-dark: rgba(26, 26, 26, 1);
+	--color-surface: rgba(255, 255, 255, 1);
+	--color-surface-hover: rgba(247, 247, 247, 1);
+	--color-surface-active: rgba(243, 243, 243, 1);
+	--color-surface-selected: rgba(241, 241, 241, 1);
+	--color-surface-disabled: rgba(0, 0, 0, 0.05);
+	--color-surface-secondary: rgba(241, 241, 241, 1);
+	--color-surface-secondary-hover: rgba(235, 235, 235, 1);
+	--color-surface-secondary-active: rgba(235, 235, 235, 1);
+	--color-surface-tertiary: rgba(243, 243, 243, 1);
+	--color-surface-tertiary-hover: rgba(235, 235, 235, 1);
+	--color-surface-tertiary-active: rgba(227, 227, 227, 1);
+	--color-surface-brand: rgba(234, 244, 255, 1);
+	--color-surface-brand-hover: rgba(224, 240, 255, 1);
+	--color-surface-brand-active: rgba(202, 230, 255, 1);
+	--color-surface-info: rgba(205, 254, 212, 1);
+	--color-surface-info-hover: rgba(175, 254, 191, 1);
+	--color-surface-info-active: rgba(146, 252, 172, 1);
+	--color-surface-success: rgba(255, 248, 219, 1);
+	--color-surface-success-hover: rgba(255, 244, 191, 1);
+	--color-surface-success-active: rgba(255, 239, 157, 1);
+	--color-surface-caution: rgba(255, 241, 227, 1);
+	--color-surface-caution-hover: rgba(255, 235, 213, 1);
+	--color-surface-caution-active: rgba(255, 220, 195, 1);
+	--color-surface-warning: rgba(254, 232, 235, 1);
+	--color-surface-warning-hover: rgba(254, 225, 230, 1);
+	--color-surface-warning-active: rgba(254, 217, 223, 1);
+	--color-surface-critical: rgba(240, 242, 255, 1);
+	--color-surface-critical-hover: rgba(234, 237, 255, 1);
+	--color-surface-critical-active: rgba(226, 231, 255, 1);
+	--color-surface-emphasis: rgba(248, 247, 255, 1);
+	--color-surface-emphasis-hover: rgba(243, 241, 255, 1);
+	--color-surface-emphasis-active: rgba(233, 229, 255, 1);
+	--color-surface-magic: rgba(48, 48, 48, 1);
+	--color-surface-magic-hover: rgba(0, 0, 0, 0);
+	--color-surface-magic-active: rgba(255, 255, 255, 1);
+	--color-surface-inverse: rgba(250, 250, 250, 1);
+	--color-surface-transparent: rgba(247, 247, 247, 1);
+	--color-fill: rgba(204, 204, 204, 1);
+	--color-fill-hover: rgba(0, 0, 0, 0.05);
+	--color-fill-active: rgba(241, 241, 241, 1);
+	--color-fill-selected: rgba(235, 235, 235, 1);
+	--color-fill-disabled: rgba(227, 227, 227, 1);
+	--color-fill-secondary: rgba(227, 227, 227, 1);
+	--color-fill-secondary-hover: rgba(212, 212, 212, 1);
+	--color-fill-secondary-active: rgba(204, 204, 204, 1);
+	--color-fill-tertiary: rgba(48, 48, 48, 1);
+	--color-fill-tertiary-hover: rgba(26, 26, 26, 1);
+	--color-fill-tertiary-active: rgba(26, 26, 26, 1);
+	--color-fill-brand: rgba(48, 48, 48, 1);
+	--color-fill-brand-hover: rgba(0, 0, 0, 0.17);
+	--color-fill-brand-active: rgba(145, 208, 255, 1);
+	--color-fill-brand-selected: rgba(81, 192, 255, 1);
+	--color-fill-brand-disabled: rgba(0, 148, 213, 1);
+	--color-fill-info: rgba(213, 235, 255, 1);
+	--color-fill-info-hover: rgba(4, 123, 93, 1);
+	--color-fill-info-active: rgba(3, 94, 76, 1);
+	--color-fill-info-secondary: rgba(1, 75, 64, 1);
+	--color-fill-success: rgba(175, 254, 191, 1);
+	--color-fill-success-hover: rgba(255, 184, 0, 1);
+	--color-fill-success-active: rgba(229, 165, 0, 1);
+	--color-fill-success-secondary: rgba(178, 132, 0, 1);
+	--color-fill-warning: rgba(255, 214, 164, 1);
+	--color-fill-warning-hover: rgba(255, 230, 0, 1);
+	--color-fill-warning-active: rgba(234, 211, 0, 1);
+	--color-fill-warning-secondary: rgba(225, 203, 0, 1);
+	--color-fill-caution: rgba(255, 235, 120, 1);
+	--color-fill-caution-hover: rgba(199, 10, 36, 1);
+	--color-fill-caution-active: rgba(163, 10, 36, 1);
+	--color-fill-caution-secondary: rgba(142, 11, 33, 1);
+	--color-fill-critical: rgba(142, 11, 33, 1);
+	--color-fill-critical-hover: rgba(254, 209, 215, 1);
+	--color-fill-critical-active: rgba(0, 91, 211, 1);
+	--color-fill-critical-selected: rgba(0, 66, 153, 1);
+	--color-fill-critical-secondary: rgba(0, 46, 106, 1);
+	--color-fill-emphasis: rgba(128, 81, 255, 1);
+	--color-fill-emphasis-hover: rgba(233, 229, 255, 1);
+	--color-fill-emphasis-active: rgba(228, 222, 255, 1);
+	--color-fill-magic: rgba(223, 217, 255, 1);
+	--color-fill-magic-secondary: rgba(48, 48, 48, 1);
+	--color-fill-magic-secondary-hover: rgba(74, 74, 74, 1);
+	--color-fill-magic-secondary-active: rgba(97, 97, 97, 1);
+	--color-fill-inverse: rgba(0, 0, 0, 0.02);
+	--color-fill-inverse-hover: rgba(0, 0, 0, 0.05);
+	--color-fill-inverse-active: rgba(0, 0, 0, 0.08);
+	--color-fill-transparent: rgba(0, 0, 0, 0.08);
+	--color-fill-transparent-hover: rgba(0, 0, 0, 0.06);
+	--color-fill-transparent-active: rgba(0, 0, 0, 0.08);
+	--color-fill-transparent-selected: rgba(0, 0, 0, 0.1);
+	--color-fill-transparent-secondary: rgba(48, 48, 48, 1);
+	--color-fill-transparent-secondary-hover: rgba(97, 97, 97, 1);
+	--color-fill-transparent-secondary-active: rgba(181, 181, 181, 1);
+	--color-text: rgba(0, 91, 211, 1);
+	--color-secondary: rgba(0, 66, 153, 1);
+	--color-disabled: rgba(0, 46, 106, 1);
+	--color-link: rgba(74, 74, 74, 1);
+	--color-link-hover: rgba(48, 48, 48, 1);
+	--color-link-active: rgba(255, 255, 255, 1);
+	--color-brand: rgba(227, 227, 227, 1);
+	--color-brand-hover: rgba(204, 204, 204, 1);
+	--color-brand-on-bg-fill: rgba(255, 255, 255, 1);
+	--color-brand-on-bg-fill-hover: rgba(0, 58, 90, 1);
+	--color-brand-on-bg-fill-active: rgba(0, 58, 90, 1);
+	--color-brand-on-bg-fill-disabled: rgba(0, 33, 51, 1);
+	--color-info: rgba(0, 124, 180, 1);
+	--color-info-hover: rgba(0, 33, 51, 1);
+	--color-info-active: rgba(1, 75, 64, 1);
+	--color-info-secondary: rgba(7, 54, 48, 1);
+	--color-info-on-bg-fill: rgba(2, 38, 34, 1);
+	--color-success: rgba(4, 123, 93, 1);
+	--color-success-hover: rgba(250, 255, 251, 1);
+	--color-success-active: rgba(79, 71, 0, 1);
+	--color-success-secondary: rgba(51, 46, 0, 1);
+	--color-success-on-bg-fill: rgba(31, 28, 0, 1);
+	--color-caution: rgba(130, 117, 0, 1);
+	--color-caution-hover: rgba(51, 46, 0, 1);
+	--color-caution-active: rgba(94, 66, 0, 1);
+	--color-caution-secondary: rgba(65, 45, 0, 1);
+	--color-caution-on-bg-fill: rgba(37, 26, 0, 1);
+	--color-warning: rgba(149, 111, 0, 1);
+	--color-warning-hover: rgba(37, 26, 0, 1);
+	--color-warning-active: rgba(142, 11, 33, 1);
+	--color-warning-secondary: rgba(95, 7, 22, 1);
+	--color-warning-on-bg-fill: rgba(47, 4, 11, 1);
+	--color-critical: rgba(199, 10, 36, 1);
+	--color-critical-hover: rgba(255, 250, 251, 1);
+	--color-critical-active: rgba(0, 91, 211, 1);
+	--color-critical-secondary: rgba(0, 66, 153, 1);
+	--color-critical-on-bg-fill: rgba(0, 46, 106, 1);
+	--color-emphasis: rgba(252, 253, 255, 1);
+	--color-emphasis-hover: rgba(226, 231, 255, 1);
+	--color-emphasis-active: rgba(213, 220, 255, 1);
+	--color-emphasis-on-bg-fill: rgba(87, 0, 209, 1);
+	--color-emphasis-on-bg-fill-hover: rgba(113, 38, 255, 1);
+	--color-emphasis-on-bg-fill-active: rgba(253, 253, 255, 1);
+	--color-magic: rgba(227, 227, 227, 1);
+	--color-magic-secondary: rgba(181, 181, 181, 1);
+	--color-magic-on-bg-fill: rgba(197, 208, 255, 1);
+	--color-inverse: rgba(227, 227, 227, 1);
+	--color-inverse-secondary: rgba(204, 204, 204, 1);
+	--color-link-inverse: rgba(235, 235, 235, 1);
+	--color-border: rgba(235, 235, 235, 1);
+	--color-border-hover: rgba(204, 204, 204, 1);
+	--color-border-disabled: rgba(0, 91, 211, 1);
+	--color-border-secondary: rgba(227, 227, 227, 1);
+	--color-border-tertiary: rgba(168, 216, 255, 1);
+	--color-border-focus: rgba(146, 252, 172, 1);
+	--color-border-brand: rgba(255, 235, 120, 1);
+	--color-border-info: rgba(255, 200, 121, 1);
+	--color-border-success: rgba(254, 193, 199, 1);
+	--color-border-caution: rgba(142, 11, 33, 1);
+	--color-border-warning: rgba(0, 91, 21, 1);
+	--color-border-critical: rgba(0, 66, 153, 1);
+	--color-border-critical-secondary: rgba(0, 46, 106, 1);
+	--color-border-emphasis: rgba(228, 222, 255, 1);
+	--color-border-emphasis-hover: rgba(148, 116, 255, 1);
+	--color-border-emphasis-active: rgba(128, 81, 255, 1);
+	--color-border-magic: rgba(97, 97, 97, 1);
+	--color-border-magic-secondary: rgba(204, 204, 204, 1);
+	--color-border-magic-secondary-hover: rgba(227, 227, 227, 1);
+	--color-border-inverse: rgba(212, 212, 212, 1);
+	--color-border-inverse-hover: rgba(227, 227, 227, 1);
+	--color-border-inverse-active: rgba(74, 74, 74, 1);
+	--color-tooltitail-down-border: rgba(48, 48, 48, 1);
+	--color-tooltitail-uborder: rgba(26, 26, 26, 1);
+	--color-icon: rgba(204, 204, 204, 1);
+	--color-icon-hover: rgba(138, 138, 138, 1);
+	--color-icon-active: rgba(97, 97, 97, 1);
+	--color-icon-disabled: rgba(74, 74, 74, 1);
+	--color-icon-secondary: rgba(26, 26, 26, 1);
+	--color-icon-secondary-hover: rgba(0, 148, 213, 1);
+	--color-icon-secondary-active: rgba(4, 123, 93, 1);
+	--color-icon-brand: rgba(153, 138, 0, 1);
+	--color-icon-info: rgba(178, 132, 0, 1);
+	--color-icon-success: rgba(226, 44, 56, 1);
+	--color-icon-caution: rgba(0, 91, 211, 1);
+	--color-icon-warning: rgba(0, 66, 153, 1);
+	--color-icon-critical: rgba(0, 46, 106, 1);
+	--color-icon-emphasis: rgba(128, 81, 255, 1);
+	--color-icon-emphasis-hover: rgba(227, 227, 227, 1);
+	--color-icon-emphasis-active: rgba(181, 181, 181, 1);
+	--color-icon-magic: rgba(253, 75, 146, 1);
+	--color-icon-inverse: rgba(255, 246, 248, 1);
+	--color-avatar-bg-fill: rgba(81, 192, 255, 1);
+	--color-avatar-five-bg-fill: rgba(0, 33, 51, 1);
+	--color-avatar-five-text-on-bg-fill: rgba(197, 48, 197, 1);
+	--color-avatar-four-bg-fill: rgba(253, 239, 253, 1);
+	--color-avatar-four-text-on-bg-fill: rgba(148, 116, 255, 1);
+	--color-avatar-one-bg-fill: rgba(248, 247, 255, 1);
+	--color-avatar-one-text-on-bg-fill: rgba(37, 232, 43, 1);
+	--color-avatar-seven-bg-fill: rgba(3, 61, 5, 1);
+	--color-avatar-seven-text-on-bg-fill: rgba(255, 255, 255, 1);
+	--color-avatar-six-bg-fill: rgba(44, 224, 212, 1);
+	--color-avatar-six-text-on-bg-fill: rgba(3, 60, 57, 1);
+	--color-avatar-text-on-bg-fill: rgba(82, 244, 144, 1);
+	--color-avatar-three-bg-fill: rgba(1, 75, 64, 1);
+	--color-avatar-two-bg-fill: rgba(0, 0, 0, 0.71);
+	--color-avatar-two-text-on-bg-fill: linear-gradient(180deg, rgba(48, 48, 48, 0) 63.53%, rgba(255, 255, 255, 0.15) 100%);
+	--color-backdrobg: rgba(0, 0, 0, 0.08);
+	--color-button-gradient-bg-fill: rgba(255, 255, 255, 1);
+	--color-checkbox-bg-surface-disabled: rgba(253, 253, 253, 1);
+	--color-checkbox-icon-disabled: rgba(250, 250, 250, 1);
+	--color-input-bg-surface: rgba(247, 247, 247, 1);
+	--color-input-bg-surface-hover: rgba(138, 138, 138, 1);
+	--color-input-bg-surface-active: rgba(97, 97, 97, 1);
+	--color-input-border: rgba(26, 26, 26, 1);
+	--color-input-border-hover: rgba(235, 235, 235, 1);
+	--color-input-border-active: rgba(0, 0, 0, 0.02);
+	--color-nav-bg: rgba(241, 241, 241, 1);
+	--color-nav-bg-surface: rgba(250, 250, 250, 1);
+	--color-nav-bg-surface-hover: rgba(250, 250, 250, 1);
+	--color-nav-bg-surface-active: rgba(0, 0, 0, 0.08);
+	--color-nav-bg-surface-selected: rgba(255, 255, 255, 1);
+	--color-radio-button-bg-surface-disabled: rgba(0, 0, 0, 0.81);
+	--color-radio-button-icon-disabled: rgba(0, 0, 0, 0.71);
+	--color-video-thumbnail-play-button-bg-fill-hover: rgba(255, 255, 255, 1);
+	--color-video-thumbnail-play-button-bg-fill: rgba(138, 138, 138, 1);
+	--color-video-thumbnail-play-button-text-on-bg-fill: rgba(181, 181, 181, 1);
+	--color-scrollbar-thumb-bg-hover: rgba(0, 0, 0, 0.08);
+	--color-scrollbar-thumb-bg: rgba(0, 0, 0, 0.05);
+
+	/* shadcn colors */
+	--color-background: hsl(0 0% 100%);
+	--color-foreground: hsl(0 0% 3.9%);
+	--color-muted: hsl(0 0% 96.1%);
+	--color-muted-foreground: hsl(0 0% 45.1%);
+	--color-popover: hsl(0 0% 100%);
+	--color-popover-foreground: hsl(0 0% 3.9%);
+	--color-card: hsl(0 0% 100%);
+	--color-card-foreground: hsl(0 0% 3.9%);
+	--color-border: hsl(0 0% 89.8%);
+	--color-input: hsl(0 0% 89.8%);
+	--color-primary: hsl(0 0% 9%);
+	--color-primary-foreground: hsl(0 0% 98%);
+	--color-secondary: hsl(0 0% 96.1%);
+	--color-secondary-foreground: hsl(0 0% 9%);
+	--color-accent: hsl(0 0% 96.1%);
+	--color-accent-foreground: hsl(0 0% 9%);
+	--color-destructive: hsl(0 72.2% 50.6%);
+	--color-destructive-foreground: hsl(0 0% 98%);
+	--color-ring: hsl(0 0% 3.9%);
+	--color-radius: 0.5rem;
+	--color-sidebar-background: hsl(0 0% 98%);
+	--color-sidebar-foreground: hsl(240 5.3% 26.1%);
+	--color-sidebar-primary: hsl(240 5.9% 10%);
+	--color-sidebar-primary-foreground: hsl(0 0% 98%);
+	--color-sidebar-accent: hsl(240 4.8% 95.9%);
+	--color-sidebar-accent-foreground: hsl(240 5.9% 10%);
+	--color-sidebar-border: hsl(220 13% 91%);
+	--color-sidebar-ring: hsl(217.2 91.2% 59.8%);
+
+	--breakpoint-sm: 490px;
+	--breakpoint-md: 768px;
+	--breakpoint-lg: 1040px;
+	--breakpoint-xl: 1440px;
+}
+
+@layer base {
+	body {
+		@apply bg-background text-foreground;
+	}
+
+	.shadow-bevel {
+		content: var(--shadow-bevel-content);
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: var(--shadow-bevel-z-index);
+		box-shadow: var(--shadow-bevel-100);
+		border-radius: var(--shadow-bevel-border-radius);
+		pointer-events: none;
+		mix-blend-mode: luminosity;
+	}
+}
