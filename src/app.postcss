@@ -470,7 +470,7 @@
 	--color-muted: hsl(0 0% 96.1%);
 	--color-muted-foreground: var(--color-gray-500);
 	--color-popover: hsl(0 0% 100%);
-	--color-popover-foreground: hsl(0 0% 3.9%);
+	--color-popover-foreground: var(--color-gray-800);
 	--color-card: hsl(0 0% 100%);
 	--color-card-foreground: hsl(0 0% 3.9%);
 	--color-border: hsl(0 0% 89.8%);
@@ -479,8 +479,8 @@
 	--color-primary-foreground: var(--color-brand-25);
 	--color-secondary: hsl(0 0% 96.1%);
 	--color-secondary-foreground: hsl(0 0% 9%);
-	--color-accent: hsl(0 0% 96.1%);
-	--color-accent-foreground: hsl(0 0% 9%);
+	--color-accent: var(--color-gray-50);
+	--color-accent-foreground: var(--color-gray-9800);
 	--color-destructive: hsl(0 72.2% 50.6%);
 	--color-destructive-foreground: hsl(0 0% 98%);
 	--color-ring: var(--color-brand-300);
@@ -506,6 +506,30 @@
 	--shadow-xl: 0 20px 24px -4px rgba(16, 24, 40, 0.08), 0 8px 8px -4px rgba(16, 24, 40, 0.03);
 	--shadow-2xl: 0 24px 48px -12px rgba(16, 24, 40, 0.18);
 	--shadow-3xl: 0 32px 64px -12px rgba(16, 24, 40, 0.14);
+
+	--motion-duration-0: 0ms;
+	--motion-duration-50: 50ms;
+	--motion-duration-100: 0.1s;
+	--motion-duration-150: 0.15s;
+	--motion-duration-200: 0.2s;
+	--motion-duration-250: 0.25s;
+	--motion-duration-300: 0.3s;
+	--motion-duration-350: 0.35s;
+	--motion-duration-400: 0.4s;
+	--motion-duration-450: 0.45s;
+	--motion-duration-500: 0.5s;
+	--motion-duration-5000: 5s;
+	--motion-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+	--motion-ease-in: cubic-bezier(0.42, 0, 1, 1);
+	--motion-ease-out: cubic-bezier(0.19, 0.91, 0.38, 1);
+	--motion-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+	--motion-linear: cubic-bezier(0, 0, 1, 1);
+	--motion-keyframes-bounce: motion-keyframes-bounce;
+	--motion-keyframes-fade-in: motion-keyframes-fade-in;
+	--motion-keyframes-pulse: motion-keyframes-pulse;
+	--motion-keyframes-spin: motion-keyframes-spin;
+	--motion-keyframes-appear-above: motion-keyframes-appear-above;
+	--motion-keyframes-appear-below: motion-keyframes-appear-below;
 }
 
 @layer base {
@@ -526,4 +550,8 @@
 		pointer-events: none;
 		mix-blend-mode: luminosity;
 	}
+}
+
+button[data-state='open'] {
+	background: linear-gradient(0deg, var(--color-brand-600) 0%, var(--color-brand-500) 100%);
 }
