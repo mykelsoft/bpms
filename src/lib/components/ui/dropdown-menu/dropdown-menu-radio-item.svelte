@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { DropdownMenu as DropdownMenuPrimitive, type WithoutChild } from "bits-ui";
-	import Circle from "lucide-svelte/icons/circle";
-	import { cn } from "$lib/utils.js";
+	import { DropdownMenu as DropdownMenuPrimitive, type WithoutChild } from 'bits-ui';
+	import Circle from 'lucide-svelte/icons/circle';
+	import { cn } from '$lib/utils.js';
 
 	let {
 		ref = $bindable(null),
@@ -14,13 +14,12 @@
 <DropdownMenuPrimitive.RadioItem
 	bind:ref
 	class={cn(
-		"data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+		"focus:bg-accent focus:text-accent-foreground relative flex cursor-default items-center gap-2 rounded-sm py-1.5 pr-2 pl-8 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 		className
 	)}
-	{...restProps}
->
+	{...restProps}>
 	{#snippet children({ checked })}
-		<span class="absolute left-2 flex size-3.5 items-center justify-center">
+		<span class="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
 			{#if checked}
 				<Circle class="size-2 fill-current" />
 			{/if}

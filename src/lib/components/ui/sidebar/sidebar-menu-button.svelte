@@ -55,12 +55,30 @@
 
 	const sidebar = useSidebar();
 
+	let divRef = $state<HTMLDivElement | null>(null);
+
 	const buttonProps = $derived({
 		class: cn(sidebarMenuButtonVariants({ variant, size }), className),
 		'data-sidebar': 'menu-button',
 		'data-size': size,
 		'data-active': isActive,
 		...restProps
+	});
+
+	const divProps = $derived({
+		class: cn(sidebarMenuButtonVariants({ variant, size }), className),
+		'data-sidebar': 'menu-button',
+		'data-size': size,
+		'data-active': isActive,
+		role: 'button',
+		tabindex: 0,
+		onclick: (e: MouseEvent) => (e.currentTarget as HTMLElement).click(),
+		onkeydown: (e: KeyboardEvent) => {
+			if (e.key === 'Enter' || e.key === ' ') {
+				e.preventDefault();
+				(e.currentTarget as HTMLElement).click();
+			}
+		}
 	});
 </script>
 
@@ -69,9 +87,15 @@
 	{#if child}
 		{@render child({ props: mergedProps })}
 	{:else}
-		<button bind:this={ref} {...mergedProps}>
-			{@render children?.()}
-		</button>
+		{#if tooltipContent}
+			<div bind:this={divRef} {...divProps}>
+				{@render children?.()}
+			</div>
+		{:else}
+			<button bind:this={ref} {...mergedProps}>
+				{@render children?.()}
+			</button>
+		{/if}
 	{/if}
 {/snippet}
 

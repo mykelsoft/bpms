@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Separator } from '$lib/components/ui/separator';
 	import * as Sidebar from '$lib/components/ui/sidebar';
-	import ThemeSelector from '$lib/components/theme-selector.svelte';
 </script>
 
 <header
@@ -9,6 +8,6 @@
 	<div class="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
 		<Sidebar.Trigger class="-ml-1" />
 		<Separator orientation="vertical" class="mx-2 data-[orientation=vertical]:h-4" />
-		<h1 class="text-base font-medium">Documents</h1>
+		<h1 class="text-base font-medium">Dashboard</h1>
 	</div>
 </header>
