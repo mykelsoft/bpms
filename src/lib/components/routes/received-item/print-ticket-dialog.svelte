@@ -15,6 +15,6 @@
 			<Dialog.Description>Print 2 copies</Dialog.Description>
 		</Dialog.Header>
 
-		<PrintTicketForm {onClose} />
+		<PrintTicketForm {onClose} items={[]} />
 	</Dialog.ScrollContent>
 </Dialog.Root>
