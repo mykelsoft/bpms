@@ -3,8 +3,18 @@
 	import * as Table from '$ui/table';
 	import { toast } from 'svelte-sonner';
 
-	const { items } = $props<{
-		items: any[];
+	type ReceivedItem = {
+		id: string;
+		itemNo: number;
+		partNumber: string;
+		description: string;
+		quantity: number;
+		units: string;
+	};
+
+	const { items, onClose } = $props<{
+		items: ReceivedItem[];
+		onClose: () => void;
 	}>();
 
 	let printRef = $state<HTMLDivElement | null>(null);
@@ -19,6 +29,15 @@
 	}
 
 	function handlePrint() {
+		if (printRef) {
+			const printWindow = window.open('', '_blank');
+			if (printWindow) {
+				printWindow.document.write(printRef.innerHTML);
+				printWindow.document.close();
+				printWindow.print();
+			}
+		}
+
 		toast.success('Printing Ticket', {
 			description: 'Sending 2 copies to printer...',
 			action: {
@@ -27,8 +46,6 @@
 			}
 		});
 
-		// In a real app, we would use window.print() with proper CSS
-		// For this demo, we'll just simulate printing
 		setTimeout(() => {
 			onClose();
 		}, 1000);

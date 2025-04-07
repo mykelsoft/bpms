@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { IconDots, IconFolder, IconShare3, IconTrash, type Icon } from '@tabler/icons-svelte';
+	import { IconDots, IconFolder, IconShare3, IconTrash } from '@tabler/icons-svelte';
 
 	import * as DropdownMenu from '$ui/dropdown-menu';
 	import * as Sidebar from '$ui/sidebar';
-	import { useSidebar } from '$ui/sidebar/context.svelte.js';
+	import { useSidebar } from '$components/ui/sidebar/context.svelte';
 
 	const { items } = $props();
 
@@ -17,7 +17,7 @@
 		{#each items as item (item.name)}
 			<Sidebar.MenuItem>
 				<Sidebar.MenuButton>
-					{#snippet child({ props }: { props: any })}
+					{#snippet child({ props }: { props: Record<string, unknown> })}
 						<a href={item.url} {...props}>
 							<item.icon />
 							<span>{item.title}</span>

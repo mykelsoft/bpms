@@ -1,7 +1,5 @@
 <script lang="ts">
-	import { z } from 'zod';
-	import { CalendarIcon, InfoIcon, Loader2 } from 'lucide-svelte';
-	import { format } from 'date-fns';
+	import { CalendarIcon, InfoIcon } from 'lucide-svelte';
 
 	// UI Components
 	import { Button } from '$ui/button';
@@ -15,70 +13,11 @@
 
 	import { Badge } from '$ui/badge';
 
-	// Type for inventory item from the outside
-	interface InventoryItem {
-		id: string;
-		itemNo: string;
-		partNumber: string;
-		description: string;
-		quantity: number;
-		units: string;
-	}
-
 	// Props
-	const { isOpen, onClose, onSubmit } = $props<{
+	const { isOpen, onClose } = $props<{
 		isOpen: boolean;
 		onClose: () => void;
-		onSubmit: (values: Omit<InventoryItem, 'id' | 'itemNo'>) => void;
 	}>();
-
-	// Form schema using zod
-	const formSchema = z.object({
-		fromWarehouse: z.string().min(1, {
-			message: 'From warehouse is required.'
-		}),
-		toWarehouse: z.string().min(1, {
-			message: 'To warehouse is required.'
-		}),
-		partNumber: z.string().min(2, {
-			message: 'Part number must be at least 2 characters.'
-		}),
-		description: z.string().optional(),
-		quantity: z.coerce.number().positive({
-			message: 'Quantity must be a positive number.'
-		}),
-		units: z.string().optional(),
-		lotDateCode: z.string().optional(),
-		expiryDate: z.date().optional()
-	});
-
-	type FormValues = z.infer<typeof formSchema>;
-
-	// State
-	let isSubmitting = $state(false);
-
-	// Submit handler function
-	function onFormSubmit(values: FormValues) {
-		isSubmitting = true;
-
-		// Simulate API call
-		setTimeout(() => {
-			onSubmit({
-				partNumber: values.partNumber,
-				description: values.description || '(auto-show)',
-				quantity: values.quantity,
-				units: values.units || 'Kg'
-			});
-			isSubmitting = false;
-
-			onClose();
-		}, 1000);
-	}
-
-	// Date format helper
-	function formatDate(date: Date | undefined): string {
-		return date ? format(date, 'PPP') : '';
-	}
 </script>
 
 <Dialog.Root open={isOpen} onOpenChange={onClose}>
@@ -208,13 +147,15 @@
 						class="ring-offset-background focus-visible:ring-ring border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex items-center justify-center rounded-md border px-4 py-2 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50">
 						Cancel
 					</button>
-					<Button type="submit" disabled={isSubmitting} class="bg-blue-600 text-white hover:bg-blue-700">
-						{#if isSubmitting}
+					<Button type="submit" class="bg-blue-600 text-white hover:bg-blue-700">
+						<!-- {#if isSubmitting}
 							<Loader2 class="mr-2 h-4 w-4 animate-spin" />
 							Saving...
 						{:else}
 							Save Item
-						{/if}
+						{/if} -->
+
+						Save Item
 					</Button>
 				</div>
 			</form>

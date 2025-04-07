@@ -37,7 +37,7 @@
 			{#each items as item (item.title)}
 				<Sidebar.MenuItem>
 					<Sidebar.MenuButton>
-						{#snippet child({ props }: { props: any })}
+						{#snippet child({ props }: { props: Record<string, unknown> })}
 							<a href={item.url} {...props}>
 								<item.icon />
 								<span>{item.title}</span>
@@ -48,7 +48,7 @@
 			{/each}
 			<Sidebar.MenuItem class="group-data-[collapsible=icon]:hidden">
 				<Sidebar.MenuButton>
-					{#snippet child({ props }: { props: any })}
+					{#snippet child({ props }: { props: Record<string, unknown> })}
 						<label {...props}>
 							<IconBrightness />
 							<span>Dark Mode</span>

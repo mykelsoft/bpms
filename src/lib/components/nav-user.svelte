@@ -5,7 +5,7 @@
 
 	import * as DropdownMenu from '$ui/dropdown-menu';
 	import * as Sidebar from '$ui/sidebar';
-	import { useSidebar } from '$ui/sidebar/context.svelte.js';
+	import { useSidebar } from '$components/ui/sidebar/context.svelte';
 
 	const { user } = $props<{
 		user: {

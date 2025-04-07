@@ -31,7 +31,7 @@
 	import { mergeProps, type WithElementRef, type WithoutChildrenOrChild } from 'bits-ui';
 	import type { ComponentProps, Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
-	import { useSidebar } from './context.svelte.js';
+	import { useSidebar } from './context.svelte';
 
 	let {
 		ref = $bindable(null),
@@ -86,16 +86,14 @@
 	{@const mergedProps = mergeProps(buttonProps, props)}
 	{#if child}
 		{@render child({ props: mergedProps })}
+	{:else if tooltipContent}
+		<div bind:this={divRef} {...divProps}>
+			{@render children?.()}
+		</div>
 	{:else}
-		{#if tooltipContent}
-			<div bind:this={divRef} {...divProps}>
-				{@render children?.()}
-			</div>
-		{:else}
-			<button bind:this={ref} {...mergedProps}>
-				{@render children?.()}
-			</button>
-		{/if}
+		<button bind:this={ref} {...mergedProps}>
+			{@render children?.()}
+		</button>
 	{/if}
 {/snippet}
 

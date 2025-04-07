@@ -8,7 +8,6 @@
 	// Create store for theme state
 	const { initialTheme, children } = $props<{
 		initialTheme?: string;
-		children?: () => any;
 	}>();
 	let activeTheme = $state(initialTheme || DEFAULT_THEME);
 

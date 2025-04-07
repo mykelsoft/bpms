@@ -23,10 +23,10 @@
 <Sidebar.Group>
 	<Sidebar.GroupContent class="flex flex-col gap-2">
 		<Sidebar.Menu>
-			{#each items as item}
+			{#each items as item (item.url)}
 				<Sidebar.MenuItem>
 					<Sidebar.MenuButton>
-						{#snippet child({ props }: { props: any })}
+						{#snippet child({ props }: { props: Record<string, unknown> & { class?: string } })}
 							<a
 								href={item.url}
 								{...props}

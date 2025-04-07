@@ -7,7 +7,6 @@
 	"arrowParens": "always",
 	"tabWidth": 4,
 	"semi": true,
-	"jsxBracketSameLine": true,
 	"bracketSameLine": true,
 	"plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
 	"overrides": [
