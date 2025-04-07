@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { IconBrightness } from '@tabler/icons-svelte';
 	import { onMount } from 'svelte';
-	import * as Sidebar from '$lib/components/ui/sidebar';
-	import { Skeleton } from '$lib/components/ui/skeleton';
-	import { Switch } from '$lib/components/ui/switch';
+	import * as Sidebar from '$ui/sidebar';
+	import { Skeleton } from '$ui/skeleton';
+	import { Switch } from '$ui/switch';
 
 	const { items, ...restProps } = $props();
 

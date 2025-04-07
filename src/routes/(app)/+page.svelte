@@ -1,5 +1,5 @@
 <script lang="ts">
-	import SectionCards from '$lib/components/section-cards.svelte';
+	import SectionCards from '$components/section-cards.svelte';
 </script>
 
 <SectionCards />

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { IconDots, IconFolder, IconShare3, IconTrash, type Icon } from '@tabler/icons-svelte';
 
-	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
-	import * as Sidebar from '$lib/components/ui/sidebar';
-	import { useSidebar } from '$lib/components/ui/sidebar/context.svelte.js';
+	import * as DropdownMenu from '$ui/dropdown-menu';
+	import * as Sidebar from '$ui/sidebar';
+	import { useSidebar } from '$ui/sidebar/context.svelte.js';
 
 	const { items } = $props();
 

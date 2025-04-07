@@ -1,19 +1,20 @@
 <script lang="ts">
-	import * as Sidebar from '$lib/components/ui/sidebar';
+	import * as Sidebar from '$ui/sidebar';
 	import {
 		IconCamera,
-		IconChartBar,
+		IconPackageImport,
 		IconDashboard,
 		IconDatabase,
 		IconFileAi,
 		IconFileDescription,
 		IconFileWord,
-		IconFolder,
 		IconInnerShadowTop,
-		IconListDetails,
+		IconPackageExport,
 		IconReport,
 		IconSettings,
-		IconUsers
+		IconBrandMinecraft,
+		IconBox,
+		IconBuildingWarehouse
 	} from '@tabler/icons-svelte';
 
 	import NavMain from './nav-main.svelte';
@@ -26,6 +27,7 @@
 		user: {
 			name: 'michael',
 			email: 'michael@gmail.com',
+			role: 'admin',
 			avatar: '/avatar.jpg'
 		},
 		navMain: [
@@ -37,27 +39,27 @@
 			{
 				title: 'Received Item',
 				url: '/received-item',
-				icon: IconListDetails
+				icon: IconPackageExport
 			},
 			{
 				title: 'Transfer Item',
 				url: '/transfer-item',
-				icon: IconChartBar
+				icon: IconPackageImport
 			},
 			{
 				title: 'Material',
 				url: '/material',
-				icon: IconFolder
+				icon: IconBrandMinecraft
 			},
 			{
 				title: 'Product',
 				url: '/product',
-				icon: IconUsers
+				icon: IconBox
 			},
-            {
+			{
 				title: 'Warehouse',
 				url: '/warehouse',
-				icon: IconUsers
+				icon: IconBuildingWarehouse
 			}
 		],
 		navClouds: [

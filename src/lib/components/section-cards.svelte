@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { IconTrendingDown, IconTrendingUp } from '@tabler/icons-svelte';
 
-	import { Badge } from '$lib/components/ui/badge';
-	import * as Card from '$lib/components/ui/card';
+	import { Badge } from '$ui/badge';
+	import * as Card from '$ui/card';
 </script>
 
 <div

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Separator } from '$lib/components/ui/separator';
-	import * as Sidebar from '$lib/components/ui/sidebar';
+	import { Separator } from '$ui/separator';
+	import * as Sidebar from '$ui/sidebar';
 </script>
 
 <header

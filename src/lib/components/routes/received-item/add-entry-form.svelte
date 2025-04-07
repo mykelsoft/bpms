@@ -4,16 +4,16 @@
 	import { format } from 'date-fns';
 
 	// UI Components
-	import { Button } from '$lib/components/ui/button';
-	import * as Dialog from '$lib/components/ui/dialog/index.js';
-	import { Input } from '$lib/components/ui/input/index.js';
-	import * as Select from '$lib/components/ui/select/index.js';
-	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
-	import * as Card from '$lib/components/ui/card/index.js';
-	import * as Popover from '$lib/components/ui/popover/index.js';
-	import { Calendar } from '$lib/components/ui/calendar/index.js';
+	import { Button } from '$ui/button';
+	import * as Dialog from '$ui/dialog';
+	import { Input } from '$ui/input';
+	import * as Select from '$ui/select';
+	import * as Tooltip from '$ui/tooltip';
+	import * as Card from '$ui/card';
+	import * as Popover from '$ui/popover';
+	import { Calendar } from '$ui/calendar';
 
-	import { Badge } from '$lib/components/ui/badge/index.js';
+	import { Badge } from '$ui/badge';
 
 	// Type for inventory item from the outside
 	interface InventoryItem {

@@ -1,6 +1,6 @@
 <script>
-	import { Label } from '$lib/components/ui/label';
-	import * as Select from '$lib/components/ui/select/index.js';
+	import { Label } from '$ui/label';
+	import * as Select from '$ui/select';
 
 	const DEFAULT_THEMES = [
 		{

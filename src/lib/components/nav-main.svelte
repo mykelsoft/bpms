@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Sidebar from '$lib/components/ui/sidebar';
-    import { page } from '$app/state';
-	import { cn } from "$lib/utils";
+	import * as Sidebar from '$ui/sidebar';
+	import { page } from '$app/state';
+	import { cn } from '$lib/utils';
 
 	const { items } = $props();
 	let currentPath = $derived(page.url.pathname);
@@ -27,7 +27,13 @@
 				<Sidebar.MenuItem>
 					<Sidebar.MenuButton>
 						{#snippet child({ props }: { props: any })}
-							<a href={item.url} {...props} class={cn(isActive(item.url) ? 'bg-sidebar-accent text-sidebar-accent-foreground' : '', props.class)}>
+							<a
+								href={item.url}
+								{...props}
+								class={cn(
+									isActive(item.url) ? 'bg-sidebar-accent text-sidebar-accent-foreground' : '',
+									props.class
+								)}>
 								<item.icon />
 								<span>{item.title}</span>
 							</a>

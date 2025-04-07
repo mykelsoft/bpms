@@ -1,17 +1,18 @@
 <script lang="ts">
 	import { IconCreditCard, IconDotsVertical, IconLogout, IconNotification, IconUserCircle } from '@tabler/icons-svelte';
 
-	import * as Avatar from '$lib/components/ui/avatar';
+	import * as Avatar from '$ui/avatar';
 
-	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
-	import * as Sidebar from '$lib/components/ui/sidebar';
-	import { useSidebar } from '$lib/components/ui/sidebar/context.svelte.js';
+	import * as DropdownMenu from '$ui/dropdown-menu';
+	import * as Sidebar from '$ui/sidebar';
+	import { useSidebar } from '$ui/sidebar/context.svelte.js';
 
 	const { user } = $props<{
 		user: {
 			name: string;
 			email: string;
 			avatar?: string;
+			role: string;
 		};
 	}>();
 
@@ -32,7 +33,7 @@
 					<div class="grid flex-1 text-left text-sm leading-tight">
 						<span class="truncate font-medium">{user.name}</span>
 						<span class="text-muted-foreground truncate text-xs">
-							{user.email}
+							{user.role}
 						</span>
 					</div>
 					<IconDotsVertical class="ml-auto size-4" />

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button';
+	import { Button } from '$ui/button';
 	import { IconPlus, IconPrinter } from '@tabler/icons-svelte';
-	import InventoryTable from '$lib/components/inventory-table.svelte';
-	import AddEntryForm from '$lib/components/routes/received-item/add-entry-form.svelte';
-	import PrintTicketDialog from '$lib/components/routes/received-item/print-ticket-dialog.svelte';
+	import InventoryTable from '$components/inventory-table.svelte';
+	import AddEntryForm from '$routeComponents/received-item/add-entry-form.svelte';
+	import PrintTicketDialog from '$routeComponents/received-item/print-ticket-dialog.svelte';
 
 	let isAddEntryOpen = $state(false);
 	let isPrintTicketOpen = $state(false);
@@ -24,5 +24,5 @@
 
 	<InventoryTable />
 	<AddEntryForm isOpen={isAddEntryOpen} onClose={() => (isAddEntryOpen = false)} onSubmit={() => {}} />
-	<PrintTicketDialog isOpen={isPrintTicketOpen} onClose={() => (isPrintTicketOpen = false)} items={[]} />
+	<PrintTicketDialog isOpen={isPrintTicketOpen} onClose={() => (isPrintTicketOpen = false)} />
 </div>
