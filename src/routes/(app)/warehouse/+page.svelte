@@ -4,9 +4,14 @@
 	import WarehouseTable from '$routeComponents/warehouse/table.svelte';
 	import AddWarehouseDialog from '$routeComponents/warehouse/add-warehouse-dialog.svelte';
 	import type { PageData } from './$types.js';
+	import { setPageTitle } from '$lib/context';
 
 	let { data }: { data: PageData } = $props();
 	let isAddWarehouseOpen = $state(false);
+
+	$effect(() => {
+		setPageTitle('Warehouse');
+	});
 </script>
 
 <div class="px-4 lg:px-6">

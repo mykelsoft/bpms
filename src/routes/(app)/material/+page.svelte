@@ -4,10 +4,15 @@
 	import MaterialTable from '$routeComponents/material/table.svelte';
 	import AddMaterialDialog from '$routeComponents/material/add-material-dialog.svelte';
 	import type { PageData } from './$types.js';
+	import { setPageTitle } from '$lib/context';
 
 	let { data }: { data: PageData } = $props();
 
 	let isAddMaterialOpen = $state(false);
+
+	$effect(() => {
+		setPageTitle('Material');
+	});
 </script>
 
 <div class="px-4 lg:px-6">

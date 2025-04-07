@@ -4,9 +4,14 @@
 	import InventoryTable from '$components/inventory-table.svelte';
 	import AddEntryForm from '$routeComponents/received-item/add-entry-form.svelte';
 	import PrintTicketDialog from '$routeComponents/received-item/print-ticket-dialog.svelte';
+	import { setPageTitle } from '$lib/context';
 
 	let isAddEntryOpen = $state(false);
 	let isPrintTicketOpen = $state(false);
+
+	$effect(() => {
+		setPageTitle('Received Item');
+	});
 </script>
 
 <div class="px-4 lg:px-6">
@@ -23,6 +28,6 @@
 	</div>
 
 	<InventoryTable />
-	<AddEntryForm isOpen={isAddEntryOpen} onClose={() => (isAddEntryOpen = false)} onSubmit={() => {}} />
+	<AddEntryForm isOpen={isAddEntryOpen} onClose={() => (isAddEntryOpen = false)} />
 	<PrintTicketDialog isOpen={isPrintTicketOpen} onClose={() => (isPrintTicketOpen = false)} />
 </div>
