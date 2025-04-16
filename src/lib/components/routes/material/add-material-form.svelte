@@ -29,7 +29,6 @@
 					<Input {...props} bind:value={$formData.partNumber} placeholder="e.g. NT.SWTPO.011" />
 				{/snippet}
 			</Form.Control>
-			<Form.Description>Enter the unique part identifier</Form.Description>
 			<Form.FieldErrors />
 		</Form.Field>
 	</div>
@@ -42,7 +41,6 @@
 					<Input {...props} bind:value={$formData.description} placeholder="e.g. sweet potato, cubed" />
 				{/snippet}
 			</Form.Control>
-			<Form.Description>Enter the item description</Form.Description>
 			<Form.FieldErrors />
 		</Form.Field>
 	</div>
@@ -55,7 +53,6 @@
 					<Input {...props} bind:value={$formData.brand} placeholder="e.g. Fresh Produce" />
 				{/snippet}
 			</Form.Control>
-			<Form.Description>Enter the brand name</Form.Description>
 			<Form.FieldErrors />
 		</Form.Field>
 	</div>

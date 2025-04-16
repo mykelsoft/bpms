@@ -14,7 +14,8 @@
 		IconSettings,
 		IconBrandMinecraft,
 		IconBox,
-		IconBuildingWarehouse
+		IconBuildingWarehouse,
+		IconForklift
 	} from '@tabler/icons-svelte';
 
 	import NavMain from './nav-main.svelte';
@@ -60,6 +61,11 @@
 				title: 'Warehouse',
 				url: '/warehouse',
 				icon: IconBuildingWarehouse
+			},
+			{
+				title: 'BOM',
+				url: '/bom',
+				icon: IconForklift
 			}
 		],
 		navClouds: [
