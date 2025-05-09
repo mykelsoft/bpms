@@ -2,7 +2,6 @@
 	import * as Sidebar from '$ui/sidebar';
 	import {
 		IconCamera,
-		IconPackageImport,
 		IconDashboard,
 		IconDatabase,
 		IconFileAi,
@@ -41,11 +40,6 @@
 				title: 'Received Item',
 				url: '/received-item',
 				icon: IconPackageExport
-			},
-			{
-				title: 'Transfer Item',
-				url: '/transfer-item',
-				icon: IconPackageImport
 			},
 			{
 				title: 'Material',

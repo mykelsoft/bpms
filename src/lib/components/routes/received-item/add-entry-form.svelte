@@ -18,13 +18,22 @@
 		isOpen: boolean;
 		onClose: () => void;
 	}>();
+
+	const entryTypes = [
+		{ value: 'received-entry', label: 'Received Entry' },
+		{ value: 'transfer-entry', label: 'Transfer Entry' }
+	];
+
+	let value = $state('');
+
+	const triggerContent = $derived(entryTypes.find((f) => f.value === value)?.label ?? 'Select a entry type');
 </script>
 
 <Dialog.Root open={isOpen} onOpenChange={onClose}>
 	<Dialog.ScrollContent class="sm:max-w-[650px]">
 		<Dialog.Header>
 			<Dialog.Title>Add New Entry</Dialog.Title>
-			<Dialog.Description>Newly received items data entry & transfer to different warehouses</Dialog.Description>
+			<Dialog.Description>Received & transfer entry to different warehouses</Dialog.Description>
 		</Dialog.Header>
 
 		<div>
@@ -33,7 +42,16 @@
 					<CalendarIcon class="h-4 w-4" />
 					<span>Sun, Apr 6</span>
 				</div>
-				<Badge variant="outline" class="border-amber-200 bg-amber-50 text-amber-700">Newly Received</Badge>
+				<Select.Root type="single" name="entry-type" bind:value>
+					<Select.Trigger>
+						{triggerContent}
+					</Select.Trigger>
+					<Select.Content>
+						{#each entryTypes as entry (entry.value)}
+							<Select.Item value={entry.value} label={entry.label}>{entry.label}</Select.Item>
+						{/each}
+					</Select.Content>
+				</Select.Root>
 			</div>
 
 			<form class="space-y-6">
