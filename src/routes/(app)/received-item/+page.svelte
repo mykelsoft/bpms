@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Button } from '$ui/button';
 	import { IconPlus, IconPrinter } from '@tabler/icons-svelte';
-	import InventoryTable from '$components/inventory-table.svelte';
+	import TicketTable from '$routeComponents/received-item/ticket-table.svelte';
 	import AddEntryForm from '$routeComponents/received-item/add-entry-form.svelte';
 	import PrintTicketDialog from '$routeComponents/received-item/print-ticket-dialog.svelte';
 	import { setPageTitle } from '$lib/context';
@@ -27,7 +27,7 @@
 		</Button>
 	</div>
 
-	<InventoryTable />
+	<TicketTable />
 	<AddEntryForm isOpen={isAddEntryOpen} onClose={() => (isAddEntryOpen = false)} />
 	<PrintTicketDialog isOpen={isPrintTicketOpen} onClose={() => (isPrintTicketOpen = false)} />
 </div>

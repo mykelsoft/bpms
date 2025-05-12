@@ -10,7 +10,7 @@
 	import * as Card from '$ui/card';
 	import * as Popover from '$ui/popover';
 	import { Calendar } from '$ui/calendar';
-
+	import InventoryTable from '$lib/components/inventory-table.svelte';
 	import { Badge } from '$ui/badge';
 
 	// Props
@@ -30,7 +30,7 @@
 </script>
 
 <Dialog.Root open={isOpen} onOpenChange={onClose}>
-	<Dialog.ScrollContent class="sm:max-w-[650px]">
+	<Dialog.ScrollContent class="sm:max-w-7xl">
 		<Dialog.Header>
 			<Dialog.Title>Add New Entry</Dialog.Title>
 			<Dialog.Description>Received & transfer entry to different warehouses</Dialog.Description>
@@ -55,109 +55,83 @@
 			</div>
 
 			<form class="space-y-6">
-				<Card.Root>
-					<Card.Header>
-						<Card.Title class="text-lg">Warehouse Information</Card.Title>
-						<Card.Description>Specify source and destination warehouses</Card.Description>
-					</Card.Header>
-					<Card.Content class="grid gap-6 md:grid-cols-2">
-						<div>
-							<label for="fromWarehouse" class="text-sm font-medium">From Warehouse</label>
-							<Input id="fromWarehouse" type="text" class="bg-slate-50" />
-							<p class="text-muted-foreground mt-1 text-xs">Source warehouse code</p>
-						</div>
-
-						<div>
-							<label for="toWarehouse" class="text-sm font-medium">To Warehouse</label>
-							<Select.Root type="single">
-								<Select.Trigger class="w-full bg-slate-50">Select destination</Select.Trigger>
-								<Select.Content>
-									<Select.Item value="W102">W102 - Main Storage</Select.Item>
-									<Select.Item value="W103">W103 - Distribution Center</Select.Item>
-								</Select.Content>
-							</Select.Root>
-							<p class="text-muted-foreground mt-1 text-xs">Destination warehouse</p>
-						</div>
-					</Card.Content>
-				</Card.Root>
-
-				<Card.Root>
-					<Card.Header>
-						<Card.Title class="text-lg">Item Details</Card.Title>
-						<Card.Description>Specify the item information</Card.Description>
-					</Card.Header>
-					<Card.Content class="space-y-6">
-						<div class="grid gap-6 md:grid-cols-2">
+				<div class="grid grid-cols-2 gap-6">
+					<Card.Root>
+						<Card.Header>
+							<Card.Title class="text-lg">Warehouse Information</Card.Title>
+							<Card.Description>Specify source and destination warehouses</Card.Description>
+						</Card.Header>
+						<Card.Content class="grid gap-6 md:grid-cols-2">
 							<div>
-								<label for="partNumber" class="text-sm leading-[24px] font-medium">
-									<span class="flex items-center gap-2">
-										Part Number
-										<Tooltip.Provider>
-											<Tooltip.Root>
-												<Tooltip.Trigger>
-													<InfoIcon class="text-muted-foreground h-3.5 w-3.5 cursor-help" />
-												</Tooltip.Trigger>
-												<Tooltip.Content>
-													<p>Enter the unique part identifier</p>
-												</Tooltip.Content>
-											</Tooltip.Root>
-										</Tooltip.Provider>
-									</span>
-								</label>
-								<Input id="partNumber" type="text" placeholder="e.g. NT.SWTPO.011" />
+								<label for="fromWarehouse" class="text-sm font-medium">From Warehouse</label>
+								<Input id="fromWarehouse" type="text" class="bg-slate-50" />
+								<p class="text-muted-foreground mt-1 text-xs">Source warehouse code</p>
 							</div>
 
 							<div>
-								<label for="description" class="text-sm font-medium">Description</label>
-								<Input id="description" type="text" readonly class="bg-slate-50" />
-								<p class="text-muted-foreground mt-1 text-xs">Auto-populated based on part number</p>
+								<label for="toWarehouse" class="text-sm font-medium">To Warehouse</label>
+								<Select.Root type="single">
+									<Select.Trigger class="w-full bg-slate-50">Select destination</Select.Trigger>
+									<Select.Content>
+										<Select.Item value="W102">W102 - Main Storage</Select.Item>
+										<Select.Item value="W103">W103 - Distribution Center</Select.Item>
+									</Select.Content>
+								</Select.Root>
+								<p class="text-muted-foreground mt-1 text-xs">Destination warehouse</p>
 							</div>
-						</div>
+						</Card.Content>
+					</Card.Root>
 
-						<div class="grid gap-6 md:grid-cols-2">
-							<div>
-								<label for="quantity" class="text-sm font-medium">Quantity</label>
-								<Input id="quantity" type="number" step="0.01" placeholder="0.00" />
+					<Card.Root>
+						<Card.Header>
+							<Card.Title class="text-lg">Item Details</Card.Title>
+							<Card.Description>Specify the item information</Card.Description>
+						</Card.Header>
+						<Card.Content class="space-y-6">
+							<div class="grid gap-6 md:grid-cols-2">
+								<div>
+									<label for="partNumber" class="text-sm leading-[24px] font-medium">
+										<span class="flex items-center gap-2">
+											Part Number
+											<Tooltip.Provider>
+												<Tooltip.Root>
+													<Tooltip.Trigger>
+														<InfoIcon class="text-muted-foreground h-3.5 w-3.5 cursor-help" />
+													</Tooltip.Trigger>
+													<Tooltip.Content>
+														<p>Enter the unique part identifier</p>
+													</Tooltip.Content>
+												</Tooltip.Root>
+											</Tooltip.Provider>
+										</span>
+									</label>
+									<Input id="partNumber" type="text" placeholder="e.g. NT.SWTPO.011" />
+								</div>
+
+								<div>
+									<label for="description" class="text-sm font-medium">Description</label>
+									<Input id="description" type="text" readonly class="bg-slate-50" />
+									<p class="text-muted-foreground mt-1 text-xs">Auto-populated based on part number</p>
+								</div>
 							</div>
 
-							<div>
-								<label for="units" class="text-sm font-medium">Units</label>
-								<Input id="units" type="text" readonly class="bg-slate-50" />
-								<p class="text-muted-foreground mt-1 text-xs">Auto-populated based on part number</p>
+							<div class="grid gap-6 md:grid-cols-2">
+								<div>
+									<label for="quantity" class="text-sm font-medium">Quantity</label>
+									<Input id="quantity" type="number" step="0.01" placeholder="0.00" />
+								</div>
+
+								<div>
+									<label for="units" class="text-sm font-medium">Units</label>
+									<Input id="units" type="text" readonly class="bg-slate-50" />
+									<p class="text-muted-foreground mt-1 text-xs">Auto-populated based on part number</p>
+								</div>
 							</div>
-						</div>
-					</Card.Content>
-				</Card.Root>
+						</Card.Content>
+					</Card.Root>
+				</div>
 
-				<Card.Root>
-					<Card.Header>
-						<Card.Title class="text-lg">Tracking Information</Card.Title>
-						<Card.Description>Specify lot and expiry information</Card.Description>
-					</Card.Header>
-					<Card.Content class="grid gap-6 md:grid-cols-2">
-						<div>
-							<label for="lotDateCode" class="text-sm font-medium">Lot/Date Code</label>
-							<Input id="lotDateCode" type="text" placeholder="Enter lot number" />
-							<p class="text-muted-foreground mt-1 text-xs">Batch or production code</p>
-						</div>
-
-						<div>
-							<label for="expiryDate" class="text-sm font-medium">Expiry Date</label>
-							<Popover.Root>
-								<Popover.Trigger class="block">
-									<Button variant="outline" class="w-full pl-3 text-left font-normal">
-										<CalendarIcon class="ml-auto h-4 w-4 opacity-50" />
-									</Button>
-								</Popover.Trigger>
-								<Popover.Content class="w-auto p-0" align="start">
-									<Calendar type="single" initialFocus />
-								</Popover.Content>
-							</Popover.Root>
-							<p class="text-muted-foreground mt-1 text-xs">When this item expires</p>
-						</div>
-					</Card.Content>
-				</Card.Root>
-
+				<InventoryTable />
 				<div class="flex justify-end gap-3">
 					<button
 						type="button"
@@ -173,7 +147,7 @@
 							Save Item
 						{/if} -->
 
-						Save Item
+						Save Ticket
 					</Button>
 				</div>
 			</form>
