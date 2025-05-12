@@ -31,11 +31,12 @@
 			avatar: '/avatar.jpg'
 		},
 		navMain: [
-			{
-				title: 'Dashboard',
-				url: '/',
-				icon: IconDashboard
-			},
+			//? will use if needed
+			// {
+			// 	title: 'Dashboard',
+			// 	url: '/',
+			// 	icon: IconDashboard
+			// },
 			{
 				title: 'Received Item',
 				url: '/received-item',
