@@ -1,11 +1,5 @@
-import { API_URL } from '$env/static/private';
-
-type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
-
-interface FetchOptions extends RequestInit {
-    method?: HttpMethod;
-    params?: Record<string, string>;
-}
+import { PUBLIC_API_URL } from '$env/static/public';
+import qs from 'qs';
 
 interface ApiError extends Error {
     status?: number;
@@ -13,39 +7,34 @@ interface ApiError extends Error {
 }
 
 export async function fetchApi<T>(
-    endpoint: string,
-    options: FetchOptions = {}
+    path: string,
+    params: Record<string, unknown> = {},
 ): Promise<T> {
     const {
         method = 'GET',
-        params,
         headers = {},
         ...restOptions
     } = options;
 
-    // Construct URL with query parameters
-    const url = new URL(`${API_URL}${endpoint}`);
-    if (params) {
-        Object.entries(params).forEach(([key, value]) => {
-            url.searchParams.append(key, value);
-        });
-    }
 
-    // Get the session token
-    const { data: { session } } = await supabase.auth.getSession();
-    const token = session?.access_token;
+    const queryParams = { ...params };
+
+    // Construct URL with query parameters
+    const url = new URL(path, PUBLIC_API_URL);
+    const urlWithParams = queryParams ? `${url.href}?${qs.stringify(queryParams)}` : url.href;
 
     // Prepare headers
     const defaultHeaders: HeadersInit = {
         'Content-Type': 'application/json',
-        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        // ...(token ? { Authorization: `Bearer ${token}` } : {}),
         ...headers
     };
 
     try {
-        const response = await fetch(url.toString(), {
+        const response = await fetch(urlWithParams, {
             method,
             headers: defaultHeaders,
+            cache: 'no-store',
             ...restOptions
         });
 
@@ -81,24 +70,3 @@ export async function fetchApi<T>(
         throw new Error('An unexpected error occurred');
     }
 }
-
-// Example usage:
-/*
-// GET request
-const data = await fetchApi<MyType>('/endpoint', {
-    params: { filter: 'value' }
-});
-
-// POST request
-const result = await fetchApi<ResponseType>('/endpoint', {
-    method: 'POST',
-    body: JSON.stringify(payload)
-});
-
-// With custom headers
-const response = await fetchApi<MyType>('/endpoint', {
-    headers: {
-        'Custom-Header': 'value'
-    }
-});
-*/

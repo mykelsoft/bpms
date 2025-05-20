@@ -1,5 +1,13 @@
 <script lang="ts">
 	import Form from './form.svelte';
+	import { type SuperValidated, type Infer } from 'sveltekit-superforms';
+	import { type FormSchema } from '$routesAuth/login/schema';
+
+	let {
+		data
+	}: {
+		data: { form: SuperValidated<Infer<FormSchema>> };
+	} = $props();
 </script>
 
 <div class="w-[440px] rounded-xl bg-white p-10 shadow-sm">
@@ -64,5 +72,5 @@
 		<h1 class="text-2xl font-bold text-gray-900">Welcome back</h1>
 		<p class="text-base text-gray-600">Please enter your details</p>
 	</div>
-	<Form />
+	<Form {data} />
 </div>
