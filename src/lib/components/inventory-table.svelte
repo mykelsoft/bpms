@@ -1,76 +1,32 @@
 <script lang="ts">
+	import { inventoryStore } from '$lib/stores/inventory';
 	import * as Table from '$ui/table';
 	import { IconDotsVertical } from '@tabler/icons-svelte';
 	import { Button } from '$ui/button';
 	import * as DropdownMenu from '$ui/dropdown-menu';
+	import { Input } from '$ui/input';
 
-	type InventoryItem = {
-		id: string;
-		itemNo: number;
-		partNumber: string;
-		description: string;
-		quantity: number;
-		units: string;
-	};
+	const items = $derived($inventoryStore);
+	let editingId: string | null = $state(null);
+	let editQuantity = $state('');
 
-	const initialData: InventoryItem[] = [
-		{
-			id: '1',
-			itemNo: 1,
-			partNumber: 'NT.SWTPO.011',
-			description: 'sweet potato, cubed',
-			quantity: 200,
-			units: 'Kg'
-		},
-		{
-			id: '2',
-			itemNo: 2,
-			partNumber: 'PR.FISH1.001',
-			description: 'fish sauce',
-			quantity: 0.75,
-			units: 'L'
-		},
-		{
-			id: '3',
-			itemNo: 3,
-			partNumber: 'VG.ONION.002',
-			description: 'red onion, diced',
-			quantity: 5,
-			units: 'Kg'
-		},
-		{
-			id: '4',
-			itemNo: 4,
-			partNumber: 'SP.CHILI.003',
-			description: 'chili powder',
-			quantity: 0.5,
-			units: 'Kg'
-		},
-		{
-			id: '5',
-			itemNo: 5,
-			partNumber: 'GR.RICE1.001',
-			description: 'jasmine rice',
-			quantity: 25,
-			units: 'Kg'
-		},
-		{
-			id: '6',
-			itemNo: 6,
-			partNumber: 'MT.CHICK.002',
-			description: 'chicken breast, sliced',
-			quantity: 10,
-			units: 'Kg'
-		},
-		{
-			id: '7',
-			itemNo: 7,
-			partNumber: 'VG.GARLI.001',
-			description: 'garlic, minced',
-			quantity: 1,
-			units: 'Kg'
+	function handleEdit(item: (typeof items)[0]) {
+		editingId = item.id;
+		editQuantity = item.quantity.toString();
+	}
+
+	function handleSave(item: (typeof items)[0]) {
+		const newQuantity = parseFloat(editQuantity);
+		if (!isNaN(newQuantity) && newQuantity >= 0) {
+			inventoryStore.updateItem(item.id, { quantity: newQuantity });
 		}
-	];
+		editingId = null;
+		editQuantity = '';
+	}
+
+	function handleDelete(id: string) {
+		inventoryStore.removeItem(id);
+	}
 </script>
 
 <div class="overflow-x-auto rounded-lg border">
@@ -86,12 +42,23 @@
 			</Table.Row>
 		</Table.Header>
 		<Table.Body class="**:data-[slot=table-cell]:first:w-8">
-			{#each initialData as item (item.id)}
+			{#each items as item (item.id)}
 				<Table.Row>
 					<Table.Cell class="text-center">{item.itemNo}</Table.Cell>
 					<Table.Cell>{item.partNumber}</Table.Cell>
 					<Table.Cell>{item.description}</Table.Cell>
-					<Table.Cell>{item.quantity}</Table.Cell>
+					<Table.Cell>
+						{#if editingId === item.id}
+							<div class="flex items-center gap-2">
+								<Input type="number" step="0.01" bind:value={editQuantity} class="w-24" />
+								<Button variant="outline" size="sm" class="h-[36px]" onclick={() => handleSave(item)}>
+									Save
+								</Button>
+							</div>
+						{:else}
+							{item.quantity}
+						{/if}
+					</Table.Cell>
 					<Table.Cell>{item.units}</Table.Cell>
 					<Table.Cell class="text-center">
 						<DropdownMenu.Root>
@@ -103,10 +70,10 @@
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end" class="w-32">
 								<DropdownMenu.Group>
-									<DropdownMenu.Item>Edit</DropdownMenu.Item>
-									<DropdownMenu.Item>Print</DropdownMenu.Item>
+									<DropdownMenu.Item onclick={() => handleEdit(item)}>Edit</DropdownMenu.Item>
 									<DropdownMenu.Separator />
-									<DropdownMenu.Item variant="destructive">Delete</DropdownMenu.Item>
+									<DropdownMenu.Item variant="destructive" onclick={() => handleDelete(item.id)}
+										>Delete</DropdownMenu.Item>
 								</DropdownMenu.Group>
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>
