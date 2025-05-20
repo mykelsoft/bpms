@@ -8,7 +8,7 @@
 		IconFileDescription,
 		IconFileWord,
 		IconInnerShadowTop,
-		IconPackageExport,
+		IconTicket,
 		IconReport,
 		IconSettings,
 		IconBrandMinecraft,
@@ -38,9 +38,9 @@
 			// 	icon: IconDashboard
 			// },
 			{
-				title: 'Received Item',
-				url: '/received-item',
-				icon: IconPackageExport
+				title: 'Ticket',
+				url: '/ticket',
+				icon: IconTicket
 			},
 			{
 				title: 'Material',
