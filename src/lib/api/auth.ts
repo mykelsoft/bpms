@@ -26,7 +26,7 @@ export const authApi = {
         const token = btoa(`${input.email}:${input.password}`);
         const controller = new AbortController();
 
-        const response = await fetch<SessionResponse>(`${PUBLIC_API_URL}/auth/session`, {
+        const response = await fetch(`${PUBLIC_API_URL}/auth/session`, {
             method: 'POST',
             body: JSON.stringify({
                 username: input.email,
@@ -49,13 +49,13 @@ export const authApi = {
     },
 
     async refreshSession() {
-        return await fetch<SessionResponse>(`${PUBLIC_API_URL}/auth/session:refresh`, {
+        return await fetch(`${PUBLIC_API_URL}/auth/session:refresh`, {
             method: 'POST'
         });
     },
 
     async forgotPassword(input: ForgotPasswordInput) {
-        return await fetch<{ key: string }>(`${PUBLIC_API_URL}/auth/forgotPassword`, {
+        return await fetch(`${PUBLIC_API_URL}/auth/forgotPassword`, {
             method: 'POST',
             body: JSON.stringify(input),
             headers: {
@@ -66,7 +66,7 @@ export const authApi = {
     },
 
     async resetPassword(input: ResetPasswordInput) {
-        return await fetch<void>(`${PUBLIC_API_URL}/auth/resetPassword`, {
+        return await fetch(`${PUBLIC_API_URL}/auth/resetPassword`, {
             method: 'POST',
             body: JSON.stringify(input),
             headers: {

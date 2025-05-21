@@ -9,6 +9,7 @@ interface ApiError extends Error {
 export async function fetchApi<T>(
     path: string,
     params: Record<string, unknown> = {},
+    options: RequestInit = {}
 ): Promise<T> {
     const {
         method = 'GET',
