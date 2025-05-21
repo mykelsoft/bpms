@@ -8,7 +8,10 @@ export interface Account {
     firstName: string;
     lastName: string;
     contactNo: string;
+    warehouse: string | null;
     role: string;
+    dateTimeCreated: string;
+    dateTimeUpdated: string;
 }
 
 export interface CreateAccountInput {
@@ -59,7 +62,7 @@ export const accountApi = {
 
     async list(input: ListAccountsInput = {}) {
         const { data: filters = {}, limit = 10, offset = 0 } = input;
-        return fetch<Account[]>(`${PUBLIC_API_URL}/account/list`, {
+        return fetch(`${PUBLIC_API_URL}/account/list`, {
             method: 'POST',
             body: JSON.stringify({
                 data: filters,
@@ -70,21 +73,21 @@ export const accountApi = {
     },
 
     async create(input: CreateAccountInput) {
-        return fetch<Account>(`${PUBLIC_API_URL}/account/create`, {
+        return fetch(`${PUBLIC_API_URL}/account/create`, {
             method: 'POST',
             body: JSON.stringify(input)
         });
     },
 
     async update(input: UpdateAccountInput) {
-        return fetch<Account>(`${PUBLIC_API_URL}/account/update`, {
+        return fetch(`${PUBLIC_API_URL}/account/update`, {
             method: 'POST',
             body: JSON.stringify(input)
         });
     },
 
     async delete(id: string) {
-        return fetch<void>(`${PUBLIC_API_URL}/account/delete`, {
+        return fetch(`${PUBLIC_API_URL}/account/delete`, {
             method: 'POST',
             body: JSON.stringify({ id })
         });

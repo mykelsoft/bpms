@@ -1,4 +1,3 @@
-import type { InventoryItem } from '$lib/types';
 import { writable } from 'svelte/store';
 
 export interface InventoryItem {
