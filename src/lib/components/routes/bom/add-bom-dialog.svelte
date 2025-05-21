@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Dialog from '$ui/dialog';
 	import AddBOMForm from './add-bom-form.svelte';
-	import { type FormSchema } from '$routesApp/material/schema';
+	import { type FormSchema } from '$routesApp/bom/schema';
 	import { type SuperValidated, type Infer } from 'sveltekit-superforms';
 
 	let {

@@ -21,6 +21,7 @@ const config = {
 			$routes: './src/routes',
 			$routeComponents: './src/lib/components/routes',
 			$routesApp: './src/routes/(app)',
+			$routesAuth: './src/routes/(auth)',
 			$stores: './src/lib/stores',
 			$utils: './src/lib/utils'
 		}

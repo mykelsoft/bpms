@@ -1,16 +1,16 @@
 <script lang="ts">
 	import { Button } from '$ui/button';
 	import { IconPlus, IconPrinter } from '@tabler/icons-svelte';
-	import TicketTable from '$routeComponents/received-item/ticket-table.svelte';
-	import AddEntryForm from '$routeComponents/received-item/add-entry-form.svelte';
-	import PrintTicketDialog from '$routeComponents/received-item/print-ticket-dialog.svelte';
+	import TicketTable from '$routeComponents/ticket/ticket-table.svelte';
+	import AddEntryForm from '$routeComponents/ticket/add-entry-form.svelte';
+	import PrintTicketDialog from '$routeComponents/ticket/print-ticket-dialog.svelte';
 	import { setPageTitle } from '$lib/context';
 
 	let isAddEntryOpen = $state(false);
 	let isPrintTicketOpen = $state(false);
 
 	$effect(() => {
-		setPageTitle('Received Item');
+		setPageTitle('Ticket');
 	});
 </script>
 
