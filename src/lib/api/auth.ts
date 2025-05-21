@@ -24,6 +24,7 @@ export interface ResetPasswordInput {
 export const authApi = {
     async createSession(input: CreateSessionInput) {
         const token = btoa(`${input.email}:${input.password}`);
+        const controller = new AbortController();
 
         const response = await fetch<SessionResponse>(`${PUBLIC_API_URL}/auth/session`, {
             method: 'POST',
@@ -34,10 +35,12 @@ export const authApi = {
             headers: {
                 Authorization: `Basic ${token}`,
                 Accept: 'application/json'
-            }
+            },
+            signal: controller.signal
         });
 
         if (!response.ok) {
+            controller.abort();
             const errorText = await response.text();
             throw new Error(`Login failed (${response.status}): ${errorText}`);
         }

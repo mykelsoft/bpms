@@ -2,7 +2,7 @@
 	import * as Sidebar from '$ui/sidebar';
 	import {
 		IconCamera,
-		IconDashboard,
+		// IconDashboard,
 		IconDatabase,
 		IconFileAi,
 		IconFileDescription,

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { IconCreditCard, IconDotsVertical, IconLogout, IconNotification, IconUserCircle } from '@tabler/icons-svelte';
-
+	import { redirect } from '@sveltejs/kit';
 	import * as Avatar from '$ui/avatar';
 
 	import * as DropdownMenu from '$ui/dropdown-menu';
@@ -18,6 +18,20 @@
 
 	const sidebar = useSidebar();
 	const isMobile = $derived(sidebar.isMobile);
+
+	async function userLogout() {
+		try {
+			const response = await fetch('/logout', {
+				method: 'POST'
+			});
+
+			if (response.ok) {
+				throw redirect(302, '/login');
+			}
+		} catch (error) {
+			console.error('Logout failed:', error);
+		}
+	}
 </script>
 
 <Sidebar.Menu>
@@ -74,7 +88,7 @@
 					</DropdownMenu.Item>
 				</DropdownMenu.Group>
 				<DropdownMenu.Separator />
-				<DropdownMenu.Item>
+				<DropdownMenu.Item onclick={userLogout}>
 					<IconLogout />
 					Log out
 				</DropdownMenu.Item>
