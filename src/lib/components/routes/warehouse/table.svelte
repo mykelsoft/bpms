@@ -6,17 +6,16 @@
 	import { warehouseApi, type Warehouse, type UpdateWarehouseInput, type DeleteWarehouseInput } from '$lib/api/warehouse';
 	import { Input } from '$ui/input';
 	import { createQuery, createMutation } from '@tanstack/svelte-query';
-	import { queryClient } from '$lib/helper/query-client';
 
 	let { data }: { data: { accessToken: string } } = $props();
+
+	let warehouseList = $state<Warehouse[]>([]);
 
 	let editingId: string | null = $state(null);
 	let editForm = $state({
 		code: '',
 		name: ''
 	});
-	let deleteDialogOpen = $state(false);
-	let warehouseToDelete: Warehouse | null = $state(null);
 
 	function handleEdit(warehouse: Warehouse) {
 		editingId = warehouse.id;
@@ -30,38 +29,35 @@
 		editingId = null;
 	}
 
-	function handleDeleteClick(warehouse: Warehouse) {
-		warehouseToDelete = warehouse;
-		deleteDialogOpen = true;
-	}
-
-	async function handleDelete() {
-		if (!warehouseToDelete) return;
-
-		try {
-			// await warehouseApi.delete(warehouseToDelete.id);
-			deleteDialogOpen = false;
-			warehouseToDelete = null;
-		} catch (e) {
-			console.error(e);
-		}
-	}
-
 	const warehouseQuery = createQuery({
 		queryKey: ['warehouses'],
 		queryFn: () => warehouseApi(data.accessToken ?? '').list()
 	});
 
 	const updateWarehouseMutation = createMutation({
-		mutationFn: (input: UpdateWarehouseInput) => {
+		mutationFn: async (input: UpdateWarehouseInput) => {
 			editingId = null;
+			const code = input.code;
+
+			const existingWarehouse = $warehouseQuery.data?.find((w: Warehouse) => w.code === code);
+
+			if (existingWarehouse) {
+				throw new Error('Warehouse code already exists');
+			}
+
 			return warehouseApi(data.accessToken ?? '').update(input);
 		},
 		onSuccess: () => {
 			$warehouseQuery.refetch();
 		},
-		onMutate: (input) => {
-			console.log('mutate', input);
+		onMutate: (value: UpdateWarehouseInput) => {
+			const warehouse = warehouseList.find((w: Warehouse) => w.id === value.id);
+			if (warehouse) {
+				warehouse.code = value.code;
+				warehouse.name = value.name;
+			}
+
+			return { warehouse };
 		}
 	});
 
@@ -70,9 +66,20 @@
 			return warehouseApi(data.accessToken ?? '').delete(id);
 		},
 		onSuccess: () => {
-			console.log('update');
 			$warehouseQuery.refetch();
+		},
+		onMutate: (value: string) => {
+			const warehouse = warehouseList.find((w: Warehouse) => w.id === value);
+			if (warehouse) {
+				warehouseList = warehouseList.filter((w: Warehouse) => w.id !== value);
+			}
+
+			return { warehouse };
 		}
+	});
+
+	$effect(() => {
+		warehouseList = $warehouseQuery.data ?? [];
 	});
 </script>
 
@@ -92,7 +99,7 @@
 				</Table.Row>
 			{/if}
 			{#if $warehouseQuery.isSuccess}
-				{#each $warehouseQuery.data as warehouse (warehouse.id)}
+				{#each warehouseList as warehouse (warehouse.id)}
 					<Table.Row>
 						<Table.Cell>
 							{#if editingId === warehouse.id}

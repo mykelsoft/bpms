@@ -46,11 +46,27 @@ export const warehouseApi = (accessToken: string) => ({
             body: JSON.stringify(input)
         });
 
+        const responseText = await response.text();
+
         if (!response.ok) {
+            console.error('Update Warehouse Error:', {
+                status: response.status,
+                statusText: response.statusText,
+                error: responseText
+            });
             return null;
         }
 
-        return response.json();
+        try {
+            const data = responseText ? JSON.parse(responseText) : null;
+            return data;
+        } catch (error) {
+            console.error('JSON Parse Error:', {
+                error,
+                responseText
+            });
+            return null;
+        }
     },
 
     list: async () => {
