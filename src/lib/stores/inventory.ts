@@ -68,29 +68,32 @@ const initialData: InventoryItem[] = [
     }
 ];
 
-export const inventory = writable<InventoryItem[]>(initialData);
+function createInventoryStore() {
+    const { subscribe, update } = writable<InventoryItem[]>(initialData);
 
-// Helper functions to manage inventory
-export const inventoryStore = {
-    subscribe: inventory.subscribe,
-    addItem: (item: InventoryItem) => {
-        inventory.update(items => [...items, item]);
-    },
-    updateItem: (id: string, updatedItem: Partial<InventoryItem>) => {
-        inventory.update(items =>
-            items.map(item =>
-                item.id === id ? { ...item, ...updatedItem } : item
-            )
-        );
-    },
-    removeItem: (id: string) => {
-        inventory.update(items => items.filter(item => item.id !== id));
-    },
-    getItemByPartNumber: (partNumber: string) => {
-        let result: InventoryItem | undefined;
-        inventory.subscribe(items => {
-            result = items.find(item => item.partNumber === partNumber);
-        })();
-        return result;
+    return {
+        subscribe,
+        addItem: (item: InventoryItem) => {
+            update(items => [...items, item]);
+        },
+        updateItem: (id: string, updatedItem: Partial<InventoryItem>) => {
+            update(items =>
+                items.map(item =>
+                    item.id === id ? { ...item, ...updatedItem } : item
+                )
+            );
+        },
+        removeItem: (id: string) => {
+            update(items => items.filter(item => item.id !== id));
+        },
+        getItemByPartNumber: (partNumber: string) => {
+            let result: InventoryItem | undefined;
+            subscribe(items => {
+                result = items.find(item => item.partNumber === partNumber);
+            })();
+            return result;
+        }
     }
 };
+
+export const inventoryStore = createInventoryStore();

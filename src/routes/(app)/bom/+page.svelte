@@ -4,16 +4,15 @@
 	import BOMTable from '$routeComponents/bom/table.svelte';
 	import AddBOMDialog from '$routeComponents/bom/add-bom-dialog.svelte';
 	import type { PageData } from './$types.js';
-	import { setPageTitle } from '$lib/context';
 
 	let { data }: { data: PageData } = $props();
 
 	let isAddBOMOpen = $state(false);
-
-	$effect(() => {
-		setPageTitle('Bills of Material');
-	});
 </script>
+
+<svelte:head>
+	<title>Bills of Material</title>
+</svelte:head>
 
 <div class="px-4 lg:px-6">
 	<div class="mb-4 flex items-center justify-end gap-2">

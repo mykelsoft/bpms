@@ -4,16 +4,15 @@
 	import MaterialTable from '$routeComponents/material/table.svelte';
 	import AddMaterialDialog from '$routeComponents/material/add-material-dialog.svelte';
 	import type { PageData } from './$types.js';
-	import { setPageTitle } from '$lib/context';
 
 	let { data }: { data: PageData } = $props();
 
 	let isAddMaterialOpen = $state(false);
-
-	$effect(() => {
-		setPageTitle('Material');
-	});
 </script>
+
+<svelte:head>
+	<title>Material</title>
+</svelte:head>
 
 <div class="px-4 lg:px-6">
 	<div class="mb-4 flex items-center justify-end gap-2">

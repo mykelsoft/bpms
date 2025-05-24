@@ -48,10 +48,20 @@ export const authApi = {
         return response.json();
     },
 
-    async refreshSession() {
-        return await fetch(`${PUBLIC_API_URL}/auth/session:refresh`, {
-            method: 'POST'
+    async refreshSession(token: string) {
+        const response = await fetch(`${PUBLIC_API_URL}/auth/session:refresh`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Basic ${token}`,
+                Accept: 'application/json'
+            },
         });
+
+        if (!response.ok) {
+            return null;
+        }
+
+        return response.json();
     },
 
     async forgotPassword(input: ForgotPasswordInput) {

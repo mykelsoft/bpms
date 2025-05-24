@@ -1,24 +1,25 @@
-import { fetchApi } from '$lib/helper/fetch-api';
+import { PUBLIC_API_URL } from '$env/static/public';
 
 // Types
 export interface Warehouse {
     id: string;
     code: string;
     name: string;
-    description?: string;
 }
 
 export interface CreateWarehouseInput {
-    name: string;
     code: string;
-    description?: string;
+    name: string;
 }
 
 export interface UpdateWarehouseInput {
     id: string;
-    code?: string;
-    name?: string;
-    description?: string;
+    code: string;
+    name: string;
+}
+
+export interface DeleteWarehouseInput {
+    id: string;
 }
 
 export interface ListWarehousesInput {
@@ -30,38 +31,115 @@ export interface ListWarehousesInput {
     take?: number;
 }
 
+
+
 // API Functions
-export const warehouseApi = {
-    async create(input: CreateWarehouseInput) {
-        return fetchApi<Warehouse>('/warehouse/create', {
+export const warehouseApi = (accessToken: string) => ({
+    create: async (input: CreateWarehouseInput) => {
+        const response = await fetch(`${PUBLIC_API_URL}/warehouse/create`, {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+                'Accept': 'application/json'
+            },
             body: JSON.stringify(input)
         });
+
+        if (!response.ok) {
+            return null;
+        }
+
+        return response.json();
     },
 
-    async list(input: ListWarehousesInput = {}) {
-        const { data: filters = {}, skip = 0, take = 10 } = input;
-        return fetchApi<Warehouse[]>('/warehouse/list', {
+    list: async () => {
+        const response = await fetch(`${PUBLIC_API_URL}/warehouse/list`, {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+                'Accept': 'application/json'
+            },
+        });
+
+        if (!response.ok) {
+            return null;
+        }
+
+        return response.json();
+    },
+
+    update: async (input: UpdateWarehouseInput) => {
+        const response = await fetch(`${PUBLIC_API_URL}/warehouse/update`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+                'Accept': 'application/json'
+            },
             body: JSON.stringify({
-                data: filters,
-                skip,
-                take
+                id: input.id,
+                code: input.code,
+                name: input.name
             })
         });
+
+        const responseText = await response.text();
+
+        if (!response.ok) {
+            console.error('Update Warehouse Error:', {
+                status: response.status,
+                statusText: response.statusText,
+                error: responseText
+            });
+            return null;
+        }
+
+        try {
+            const data = responseText ? JSON.parse(responseText) : null;
+            return data;
+        } catch (error) {
+            console.error('JSON Parse Error:', {
+                error,
+                responseText
+            });
+            return null;
+        }
     },
 
-    async update(input: UpdateWarehouseInput) {
-        return fetchApi<Warehouse>('/warehouse/update', {
+    delete: async (id: string) => {
+        const response = await fetch(`${PUBLIC_API_URL}/warehouse/delete`, {
             method: 'POST',
-            body: JSON.stringify(input)
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ id }),
         });
-    },
 
-    async delete(id: string) {
-        return fetchApi<void>('/warehouse/delete', {
-            method: 'POST',
-            body: JSON.stringify({ id })
-        });
+
+        const responseText = await response.text();
+
+        if (!response.ok) {
+            console.error('Update Warehouse Error:', {
+                status: response.status,
+                statusText: response.statusText,
+                error: responseText
+            });
+            return null;
+        }
+
+        try {
+            const data = responseText ? JSON.parse(responseText) : null;
+            return data;
+        } catch (error) {
+            console.error('JSON Parse Error:', {
+                error,
+                responseText
+            });
+            return null;
+        }
     }
-};
+});

@@ -16,6 +16,8 @@ declare global {
                 dateTimeCreated: string;
                 dateTimeUpdated: string;
             } | null;
+            accessToken: string | null;
+            refreshToken: string | null;
         }
         // interface PageData {}
         // interface PageState {}

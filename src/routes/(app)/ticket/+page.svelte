@@ -4,15 +4,14 @@
 	import TicketTable from '$routeComponents/ticket/ticket-table.svelte';
 	import AddEntryForm from '$routeComponents/ticket/add-entry-form.svelte';
 	import PrintTicketDialog from '$routeComponents/ticket/print-ticket-dialog.svelte';
-	import { setPageTitle } from '$lib/context';
 
 	let isAddEntryOpen = $state(false);
 	let isPrintTicketOpen = $state(false);
-
-	$effect(() => {
-		setPageTitle('Ticket');
-	});
 </script>
+
+<svelte:head>
+	<title>Ticket</title>
+</svelte:head>
 
 <div class="px-4 lg:px-6">
 	<div class="mb-4 flex items-center justify-end gap-2">

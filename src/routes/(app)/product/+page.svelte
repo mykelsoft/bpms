@@ -4,15 +4,14 @@
 	import ProductTable from '$routeComponents/product/table.svelte';
 	import AddProductDialog from '$routeComponents/product/add-product-dialog.svelte';
 	import type { PageData } from './$types.js';
-	import { setPageTitle } from '$lib/context';
 
 	let { data }: { data: PageData } = $props();
 	let isAddProductOpen = $state(false);
-
-	$effect(() => {
-		setPageTitle('Product');
-	});
 </script>
+
+<svelte:head>
+	<title>Product</title>
+</svelte:head>
 
 <div class="px-4 lg:px-6">
 	<div class="mb-4 flex items-center justify-end gap-2">

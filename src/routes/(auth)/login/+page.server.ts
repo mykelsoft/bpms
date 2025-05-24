@@ -1,11 +1,13 @@
 import type { Actions, PageServerLoad } from './$types.js';
 import { fail, redirect } from '@sveltejs/kit';
 
+import { auth } from '$lib/stores/auth';
 import { authApi } from '$lib/api/auth';
 import { formSchema } from './schema';
 import { superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
 
+// Load the form
 export const load: PageServerLoad = async () => {
     return {
         form: await superValidate(zod(formSchema))
@@ -26,8 +28,16 @@ export const actions: Actions = {
                 path: '/',
                 httpOnly: true,
                 sameSite: 'strict',
-                maxAge: 60 * 60 * 24 * 7, // 1 week
             })
+
+            event.cookies.set('refresh_token', session.refreshToken, {
+                path: '/',
+                httpOnly: true,
+                sameSite: 'strict',
+            })
+
+            auth.setAccessToken(session.accessToken)
+            auth.setRefreshToken(session.refreshToken)
 
             throw redirect(303, '/')
         }

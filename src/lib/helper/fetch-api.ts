@@ -12,7 +12,7 @@ export async function fetchApi<T>(
     options: RequestInit = {}
 ): Promise<T> {
     const {
-        method = 'GET',
+        method = 'POST',
         headers = {},
         ...restOptions
     } = options;
